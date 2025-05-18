@@ -1,9 +1,0 @@
-{
-  "name": "Playmash Dev Container",
-  "image": "gelt_backend",
-  "workspaceFolder": "/app",
-  "forwardPorts": [5173],
-  "settings": {
-    "terminal.integrated.defaultProfile.linux": "bash"
-  }
-}
