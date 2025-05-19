@@ -170,4 +170,20 @@ If you see an error, check that all services are running and your `.env` is conf
 
 ---
 
+## Log Storage
+
+- The backend writes logs to both the console and a persistent log file at `/logs/mash_backend.log` inside the backend container.
+- On your host, you can access the logs via the Docker volume `mash_backend_logs`.
+- To view the logs, run:
+  ```powershell
+  docker-compose exec mash_backend type /logs/mash_backend.log
+  ```
+  Or copy the log file out of the container:
+  ```powershell
+  docker-compose cp mash_backend:/logs/mash_backend.log .
+  ```
+- Logs include all requests, responses, and errors for observability and troubleshooting.
+
+---
+
 For more, see the documentation for FastAPI, Ollama, and Docker.
