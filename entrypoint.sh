@@ -9,8 +9,8 @@ until curl -s http://localhost:11434/ > /dev/null; do
   sleep 1
 done
 
-echo "Ollama is up. Pulling model..."
-ollama pull llama3
+echo "Ollama is up. Creating custom model..."
+ollama create mash-categories -f /Modelfile || echo "Model may already exist."
 
-echo "Model pulled. Continuing to run Ollama in foreground."
+echo "Model ready. Continuing to run Ollama in foreground."
 wait $OLLAMA_PID
