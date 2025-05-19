@@ -83,6 +83,34 @@ If you want to run just the backend (not recommended for most users):
 
 ---
 
+## Running in a Low-Traffic Production Environment
+
+To deploy PlayMash for a small team or low-traffic production use (e.g., a classroom, club, or internal event):
+
+1. **Set up a server** (cloud VM, on-prem, or a small Azure VM) with Docker and Docker Compose installed.
+2. **Clone this repository** to your server:
+   ```powershell
+   git clone <your-repo-url>
+   cd gelt_interview
+   ```
+3. **Edit your `.env` file** in `MASH_backend/` to set the correct Ollama model and URL if needed.
+4. **Build and start all services** in detached mode:
+   ```powershell
+   docker compose up --build -d
+   ```
+5. **Access the app:**
+   - Frontend: `http://<your-server-ip>:5173`
+   - API docs: `http://<your-server-ip>:8000/docs`
+
+**Notes for production:**
+- For low-traffic use, the default Docker Compose setup is sufficient. All services run in containers and restart automatically if they fail.
+- For HTTPS, use a reverse proxy (like Nginx or Caddy) in front of the frontend and backend.
+- For persistent Ollama model data, Docker volumes are already configured.
+- Logs are output to the console by default; for long-term retention, configure Docker logging drivers or redirect logs to files.
+- To update, pull the latest code and re-run `docker compose up --build -d`.
+
+---
+
 ## API Reference
 
 ### POST `/categories`
