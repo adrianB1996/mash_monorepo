@@ -99,8 +99,8 @@ To deploy PlayMash for a small team or low-traffic production use (e.g., a class
    docker compose up --build -d
    ```
 5. **Access the app:**
-   - Frontend: `http://<your-server-ip>:5173`
-   - API docs: `http://<your-server-ip>:8000/docs`
+   - Frontend: `http://localhost:5173`
+   - API docs: `http://localhost:8000/docs`
 
 **Notes for production:**
 - For low-traffic use, the default Docker Compose setup is sufficient. All services run in containers and restart automatically if they fail.
@@ -183,6 +183,34 @@ If you see an error, check that all services are running and your `.env` is conf
   docker-compose cp mash_backend:/logs/mash_backend.log .
   ```
 - Logs include all requests, responses, and errors for observability and troubleshooting.
+
+---
+
+## Running Backend Unit Tests
+
+To run the backend unit tests (using pytest) inside Docker:
+
+1. Make sure your containers are running:
+   ```powershell
+   docker-compose up --build -d
+   ```
+2. Run the tests inside the backend container:
+   ```powershell
+   docker-compose exec mash_backend pytest
+   ```
+   This will discover and run all tests in the backend (e.g., `test_category_service.py`).
+
+If you want to run a specific test file:
+   ```powershell
+   docker-compose exec mash_backend pytest test_category_service.py
+   ```
+
+If you want to run tests locally (without Docker), make sure you have the dependencies installed:
+   ```powershell
+   pip install -r MASH_backend/requirements.txt
+   cd MASH_backend
+   pytest
+   ```
 
 ---
 
